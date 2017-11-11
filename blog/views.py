@@ -2,9 +2,15 @@ from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post
-
+from .forms import feedBackForm
+from django.http import HttpResponse
 
 # Create your views here.
+
+def post_index(request):
+  return render(request, 'post/index.html', {})
+
+
 def post_list(request):
     object_list = Post.published.all()
 
@@ -29,3 +35,12 @@ def post_detail(request, year, month, day, post):
                                    publish__day=day)
 
     return render(request, 'post/detail.html', {'post': post})
+
+def feedback(request):
+  if request.method != 'POST':
+    form = feedBackForm()
+  else:
+    form = feedBackForm(request.POST,request.FILES or None)
+    if form.is_valid():
+      form.save()
+  return HttpResponse('ok')

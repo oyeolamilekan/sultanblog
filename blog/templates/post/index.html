@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block home %}active{% endblock%}
+{% block content %}
+<style type="text/css">
+	body {
+		background-image: url('static/light-bulbs.jpg');
+		background-size: cover;
+	    background-position: center;
+	    height: 100vh;
+	    margin-top: -30px;
+	}
+	
+</style>
+<div class="main container text-center">
+	<h1 style="color: white; margin-top: 20%;"><i>"Innovation distinguishes between a leader and a follower."
+</i></h1>
+<h1 style="color: white;">By <br> Steve Jobs</h1>
+<a href="#myModal" role="button" data-toggle="modal" class="btn btn-default">Be a Mentee</a>
+</div>
+{% endblock %}

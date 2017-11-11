@@ -7,6 +7,7 @@ from django.core.urlresolvers import reverse
 class PublishedManager(models.Manager):
     def get_queryset(self):
         return super(PublishedManager, self).get_queryset().filter(status='published')
+
 class Profile(models.Model):
 	owner = models.OneToOneField(User)
 	background_pic = models.ImageField(upload_to="me/",null=True,blank=True)
@@ -54,3 +55,15 @@ class Post(models.Model):
 	                                             self.publish.strftime('%m'),
 	                                             self.publish.strftime('%d'),
 	                                             self.slug])
+
+	def __str__(self):
+		return self.content
+
+class Feedback(models.Model):
+	name = models.CharField(max_length=200)
+	phone_number = models.IntegerField()
+	email_field = models.EmailField()
+	createdate = models.DateTimeField(auto_now_add=True,blank=True,null=True)
+
+	def __str__(self):
+		return self.name

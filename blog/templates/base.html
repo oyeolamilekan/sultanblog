@@ -1,8 +1,9 @@
 <!doctype html>
 {% load static %}
+{% load feedback %}
 <html>
 <head>
-  <title>Sultan</title>
+  <title>Jolatankoka</title>
   
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -32,7 +33,7 @@
     background-color: #eee;
     font-weight: 300;
   }
-  h2,h3,h4,h5 {
+  h1,h2,h3,h4,h5 {
     font-weight: 300;
   }
   .navbar-default {
@@ -105,12 +106,15 @@
     margin-right: 5px;
     margin-left: 5px;
   }
+  .navbar-nav {
+    background-color: transparent !important;
+  }
 </style>
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
       <div class="navbar-header">
-      <a class="navbar-brand" href="/">Sultan</a>
+      <a class="navbar-brand" href="/">Jolatankoka</a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
                 <i class="fa fa-bars"></i>
                 <b>Menu</b>
@@ -119,9 +123,14 @@
         </div>
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav" style="margin-right: -10px;">
-                <li class="{% block home %}{% endblock%}">
+              <li class="{% block home %}{% endblock%}">
                     <a href="/" style="background-color: white;">
                         <i class="fa fa-home"></i> Home
+                    </a>
+                </li>
+                <li class="{% block blog %}{% endblock%}">
+                    <a href="{% url 'blog:post_list' %}" style="background-color: white;">
+                        <i class="fa fa-newspaper-o"></i> Blog
                     </a>
                 </li>
                  <li class="{% block shop %}{% endblock%}">
@@ -138,5 +147,21 @@
     </nav>
   {% block content %}
   {% endblock %}
+  <div class="modal fade" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Become a mentee</h4>
+      </div>
+      <div class="modal-body feedback-loop">
+      <h4>Fill the form and become a mentee</h4>
+      <div style="padding: 5px">
+      {% report_form %}
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
