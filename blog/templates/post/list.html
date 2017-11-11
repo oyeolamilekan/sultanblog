@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block home %}active{% endblock%}
+{% block content %}
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<div class="panel panel-default">
+					<img src="{{ request.user.profile.background_pic.url }}" style="width: 100%;">
+					<div class="panel-body">
+						<div class="text-center">
+						<img src="{{ request.user.profile.profile_pic.url }}" style="position: relative; width: 45px; height: 45px; top:-30px; margin-bottom: 0px; border-radius: 120px;">
+					</div>
+						<h3 style="margin-top: -25px;">Sultan</h3>
+						<i>Leader, Teacher, Entepreneur</i>
+
+						<div class="text-center">
+							<i class="fa fa-facebook-official spn"></i>
+							<i class="fa fa-twitter spn"></i>
+							<i class="fa fa-linkedin spn"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-6">
+				{% for post in posts %}
+				<div class="panel panel-default">
+					{% if post.header_pic %}
+						<img src="{{ post.header_pic.url }}" style="width: 100%;">
+					{% endif %}
+					<div class="panel-body">
+						<h2>{{ post.title }}</h2>
+						{{ post.body|truncatechars:250|linebreaks }}
+
+						<a href="{{ post.get_absolute_url }}" class="btn btn-danger">Read More →</a>
+					</div>
+					<div class="panel-footer">
+					Posted on {{ post.created }} by {{ post.author }}
+					<div class="pull-right">
+						<a href="https://www.linkedin.com/cws/share?url={{ request.build_absolute_uri }}" class="share_link link">
+						<i class="fa fa-linkedin-square spn"></i>
+					</a>
+						<!-- <i class="fa fa-twitter spn"></i> -->
+						<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="share_link face">
+							<i class="fa fa-facebook-official spn"></i>
+						</a>
+					</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

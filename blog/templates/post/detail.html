@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block home %}active{% endblock%}
+{% block content %}
+<div class="main">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 hidden-sm hidden-xs">
+				<div class="panel panel-default">
+					<img src="{{ request.user.profile.background_pic.url }}" style="width: 100%;">
+					<div class="panel-body">
+						<div class="text-center">
+						<img src="{{ request.user.profile.profile_pic.url }}" style="position: relative; width: 45px; height: 45px; top:-30px; margin-bottom: 0px; border-radius: 120px;">
+					</div>
+						<h3 style="margin-top: -25px;">Sultan</h3>
+						<i>Leader, Teacher, Entepreneur</i>
+
+						<div class="text-center">
+							<i class="fa fa-facebook-official spn"></i>
+							<i class="fa fa-twitter spn"></i>
+							<i class="fa fa-linkedin spn"></i>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<h2 class="text-center">{{ post.title }}</h2>
+						<div class="text-center">
+							<a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" class="share_link face">
+							<i class="fa fa-facebook-official spn"></i>
+						</a>
+						<a href="https://twitter.com/home?status={{ share_string }}%20{{ request.build_absolute_uri }}" class="share_link twitt">
+							<i class="fa fa-twitter spn"></i>
+						</a>
+						<a href="https://www.linkedin.com/cws/share?url={{ request.build_absolute_uri }}" class="share_link link">
+							<i class="fa fa-linkedin spn"></i>
+						</a>
+						</div>
+					</div>
+
+				</div>
+				{% if post.header_pic %}
+				<div class="panel panel-default">
+					<img src="{{ post.header_pic.url }}" style="width: 100%;">
+					<div class="panel-body">
+						<h5>{{ post.heade_pic_descr }}</h5>
+					</div>
+				</div>
+				{% endif %}
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<!-- <h3>{{ post.title }}</h3> -->
+						{{ post.body|linebreaks }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
