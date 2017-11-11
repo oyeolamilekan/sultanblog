@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
 import os
-#import dj_database_url
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -122,10 +122,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 #STATIC_URL = '/static/'
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# AWS_ACCESS_KEY_ID = 'AKIAIMMUJPDI5TKTUS7Q'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'washinga'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAIMMUJPDI5TKTUS7Q'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'washinga'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -138,7 +138,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_ROOT, 'static'),
 )
 
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
-# STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
