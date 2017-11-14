@@ -2,7 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .models import Post,Ads,Profile,Mentee
-from .forms import feedBackForm
+from .forms import feedBackForm,AskJolaForm
 from django.http import HttpResponse
 from django.core.mail import send_mail
 # Create your views here.
@@ -49,5 +49,15 @@ def feedback(request):
       if form.is_valid():
         form.save()
     return HttpResponse('ok')
+
+def askjola(request):
+    if request.method != 'POST':
+      form = AskJolaForm()
+    else:
+      form = AskJolaForm(request.POST,request.FILES or None)
+      if form.is_valid():
+        form.save()
+    return HttpResponse('ok')
+
     #send_mail(subject,message,from_email,reciever_list,fail_silently=False,html_message=html_message)
 

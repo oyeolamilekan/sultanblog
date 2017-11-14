@@ -73,6 +73,15 @@ class Mentee(models.Model):
 	def __str__(self):
 		return self.name
 
+class AskJola(models.Model):
+	name = models.CharField(max_length=200)
+	email_state = models.EmailField()
+	body = models.TextField()
+
+	def __str__(self):
+		return self.name
+
+		
 class Ads(models.Model):
 	url = models.CharField(max_length=200)
 	banner = models.ImageField('ads/',blank=True,null=True)

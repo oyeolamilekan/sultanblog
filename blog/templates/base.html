@@ -135,10 +135,14 @@
                 </li>
                  <li class="{% block shop %}{% endblock%}">
                     <a href="#" style="background-color: white;">
-                        <i class="fa fa-book"></i> Books
+                        <i class="fa fa-shopping-bag"></i> Shop
                     </a>
                 </li>
-                
+                <li class="{% block aks %}{% endblock%}">
+                  <a href="#myQuestion" role="button" data-toggle="modal" style="background-color: white;">
+                        <i class="fa fa-comments"></i> Ask Jola
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
             </ul>
@@ -149,7 +153,7 @@
   {% block content %}
   {% endblock %}
 </div>
-  <div class="modal fade" id="myModal">
+<div class="modal fade" id="myModal">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -160,6 +164,22 @@
       <h4>Fill the form and become a mentee</h4>
       <div style="padding: 5px">
       {% report_form %}
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="myQuestion">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title"><i class="fa fa-comments"></i> Ask Jola</h4>
+      </div>
+      <div class="modal-body feedback-lop">
+      <div style="padding: 2px">
+      {% ask_form %}
       </div>
       </div>
     </div>
