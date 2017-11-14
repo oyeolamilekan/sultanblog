@@ -108,13 +108,17 @@
   .navbar-nav {
     background-color: transparent !important;
   }
+  .spav {
+    margin-left: 15px;
+    text-transform: uppercase;
+  }
 </style>
 
 <body>
   <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
       <div class="navbar-header">
-      <a class="navbar-brand" href="/"><img src="static/logo.png" style="height: 25px;"></a>
+      <a class="navbar-brand" href="/"><img src="{% static 'logo.png' %}" style="height: 25px;"></a>
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#topNavBar">
                 <i class="fa fa-bars"></i>
                 <b>Menu</b>
@@ -123,24 +127,19 @@
         </div>
         <div class="collapse navbar-collapse" id="topNavBar">
             <ul class="nav navbar-nav" style="margin-right: -10px;">
-              <li class="{% block home %}{% endblock%}">
-                    <a href="/" style="background-color: white;">
-                        <i class="fa fa-home"></i> Home
-                    </a>
-                </li>
-                <li class="{% block blog %}{% endblock%}">
-                    <a href="{% url 'blog:post_list' %}" style="background-color: white;">
-                        <i class="fa fa-newspaper-o"></i> Blog
-                    </a>
-                </li>
-                 <li class="{% block shop %}{% endblock%}">
-                    <a href="#" style="background-color: white;">
-                        <i class="fa fa-shopping-bag"></i> Shop
-                    </a>
-                </li>
-                <li class="{% block aks %}{% endblock%}">
+                <li class="{% block aks %}{% endblock%} spav">
                   <a href="#myQuestion" role="button" data-toggle="modal" style="background-color: white;">
-                        <i class="fa fa-comments"></i> Ask Jola
+                        <i class="fa fa-comments"></i> <b>Ask Jola</b>
+                    </a>
+                </li>
+                <li class="{% block blog %}{% endblock%} spav">
+                    <a href="{% url 'blog:post_list' %}" style="background-color: white;">
+                        <i class="fa fa-newspaper-o"></i> <b>Blog</b>
+                    </a>
+                </li>
+                 <li class="{% block shop %}{% endblock%} spav">
+                    <a href="#" style="background-color: white;">
+                        <i class="fa fa-shopping-bag"></i> <b>Shop</b>
                     </a>
                 </li>
             </ul>
