@@ -1,19 +1,21 @@
-from django.shortcuts import render
+#from django.shortcuts import render
 from django.shortcuts import render, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from .models import Post
+from .models import Post,Ads,Profile,Mentee
 from .forms import feedBackForm
 from django.http import HttpResponse
-
+from django.core.mail import send_mail
 # Create your views here.
 
 def post_index(request):
-  return render(request, 'post/index.html', {})
+  ad = Ads.objects.order_by('?')[0:1]
+  return render(request, 'post/index.html', {'ads':ad})
 
 
 def post_list(request):
+    ad = Ads.objects.order_by('?')[0:1]
     object_list = Post.published.all()
-
+    profile = Profile.objects.get(owner_status='owner')
     paginator = Paginator(object_list, 3) # 3 posts in each page
     page = request.GET.get('page')
     try:
@@ -25,22 +27,27 @@ def post_list(request):
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
     return render(request, 'post/list.html', {'page': page,
-                                                   'posts': posts})
+                                                   'posts': posts,'ads':ad,'profile':profile})
 
 def post_detail(request, year, month, day, post):
+    ad = Ads.objects.order_by('?')[0:1]
     post = get_object_or_404(Post, slug=post,
                                    status='published',
                                    publish__year=year,
                                    publish__month=month,
                                    publish__day=day)
-
-    return render(request, 'post/detail.html', {'post': post})
+    if request.method == 'GET':
+      post.page_views += 1
+      post.save()
+    return render(request, 'post/detail.html', {'post': post,'ads':ad})
 
 def feedback(request):
-  if request.method != 'POST':
-    form = feedBackForm()
-  else:
-    form = feedBackForm(request.POST,request.FILES or None)
-    if form.is_valid():
-      form.save()
-  return HttpResponse('ok')
+    if request.method != 'POST':
+      form = feedBackForm()
+    else:
+      form = feedBackForm(request.POST,request.FILES or None)
+      if form.is_valid():
+        form.save()
+    return HttpResponse('ok')
+    #send_mail(subject,message,from_email,reciever_list,fail_silently=False,html_message=html_message)
+

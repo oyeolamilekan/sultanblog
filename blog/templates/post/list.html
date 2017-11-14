@@ -6,16 +6,16 @@
 		<div class="row">
 			<div class="col-md-3 hidden-sm hidden-xs">
 				<div class="panel panel-default">
-					{% if request.user.profile.background_pic %}
-					<img src="{{ request.user.profile.background_pic.url }}" style="width: 100%;">
+					{% if profile.owner.profile.background_pic %}
+					<img src="{{ profile.owner.profile.background_pic.url }}" style="width: 100%;">
 					{% endif %}
 					<div class="panel-body">
 						<div class="text-center">
-						{% if request.user.profile.profile_pic %}
-						<img src="{{ request.user.profile.profile_pic.url }}" style="position: relative; width: 45px; height: 45px; top:-30px; margin-bottom: 0px; border-radius: 120px;">
+						{% if profile.owner.profile.profile_pic %}
+						<img src="{{ profile.owner.profile.profile_pic.url }}" style="position: relative; width: 45px; height: 45px; top:-30px; margin-bottom: 0px; border-radius: 120px;">
 						{% endif %}
 					</div>
-						<h3 style="margin-top: -25px;">Sultan</h3>
+						<h3 style="margin-top: -25px;">{{ profile.owner }}</h3>
 						<i>Leader, Teacher, Entepreneur</i>
 
 						<div class="text-center">
@@ -27,6 +27,18 @@
 				</div>
 			</div>
 			<div class="col-sm-12 col-md-6">
+				<div class="visible-xs visible-sm">
+					<div class="panel panel-danger">
+							{% for ad in ads %}
+							<span style="position: absolute;">Ads</span>
+								{% if ad.banner %}
+								<a href="http://{{ ad.url }}">
+									<img src="{{ ad.banner.url }}" style="width: 100%;">
+								</a>
+								{% endif %}
+							{% endfor %}
+						</div>
+				</div>
 				{% for post in posts %}
 				<div class="panel panel-default">
 					{% if post.header_pic %}
@@ -52,6 +64,35 @@
 					</div>
 				</div>
 				{% endfor %}
+				<div class="pagination">
+				    <span class="step-links">
+				        {% if posts.has_previous %}
+				            <a href="?page={{ posts.previous_page_number }}" class="btn btn-primary">Previous</a>
+				        {% endif %}
+
+				        <span class="current">
+				            Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+				        </span>
+
+				        {% if posts.has_next %}
+				            <a href="?page={{ posts.next_page_number }}" class="btn btn-danger">Next</a>
+				        {% endif %}
+				    </span>
+				</div>
+			</div>
+			<div class="col-md-3 hidden-xs hidden-sm">
+				<div class="panel panel-danger">
+				<div class="panel-heading">
+					Ads
+				</div>
+					{% for ad in ads %}
+						{% if ad.banner %}
+						<a href="http://{{ ad.url }}">
+							<img src="{{ ad.banner.url }}" style="width: 100%;">
+						</a>
+						{% endif %}
+					{% endfor %}
+				</div>
 			</div>
 		</div>
 	</div>

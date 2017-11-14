@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Post,Profile,Feedback
+from .models import Post,Profile,Mentee,Ads
 
 class PostAdmin(admin.ModelAdmin):
     list_display = ('title', 'slug', 'author', 'publish', 'status')
@@ -16,4 +16,6 @@ admin.site.register(Post, PostAdmin)
 
 admin.site.register(Profile)
 
-admin.site.register(Feedback)
+admin.site.register(Mentee)
+
+admin.site.register(Ads)

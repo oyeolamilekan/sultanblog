@@ -3,19 +3,198 @@
 {% block home %}active{% endblock%}
 {% block content %}
 <style type="text/css">
-	body {
-		background-image: url('static/light-bulbs.jpg');
+	.mai {
+		background-image: url('static/IMG_ywe7af.jpg');
 		background-size: cover;
-	    background-position: center;
+	    background-position-top: 20px;
 	    height: 100vh;
-	    margin-top: -30px;
+	    margin-top: 0px;
 	}
-	
+	.colrr {
+		padding: 20px;
+		background-color: black;
+		color: white;
+	}
+	.bg-1 {
+		background-image: url('static/Screenshot_2017-09-26-23-49-33.png');
+		background-size: cover;
+	    background-position-top: 20px;
+	    width: 50%;
+	    display: block;
+	    margin: 0 !important;
+	    padding: 10%
+	}
+	.bg-1 h1{
+		padding-left: 20%;
+		padding-right: 20%;
+	}
+	.bg-1 {
+		padding-bottom: 5%;
+		height: 400px; 
+	}
+	.posts {
+		background-color: black;
+	}
+	footer {
+     background-color: #191919;
+     color: #fff;
+     /*margin-top: 3em;*/
+     padding: 50px;
+}
+footer h2{
+  margin-top: 2em;
+  font-weight: bold;
+  margin-right: 50px;
+}
+footer address {
+     color: #fff;
+   }
+   footer ul {
+     margin-bottom: 5em;
+}
+   footer address strong {
+     color: #fff;
+     display: block;
+     padding-bottom: 0.62em;
+}
+   footer a {
+     font-weight: 300;
+     color: #fff;
+}
+footer ul li {
+	line-height: 34px;
+}
+.spacv {
+  margin-left: 20px;
+  font-size: 20px;
+}
+.credite {
+	background-color: black;
+	color: white;
+	margin: 0;
+	padding: 10px;
+	font-size: 20px;
+}
+	@media (max-width: 705px){
+		.bg-1 {
+			width: 100%;
+		}
+		h1 {
+			margin: 0;
+		}
+	}
 </style>
-<div class="main container text-center">
-	<h1 style="color: white; margin-top: 20%;"><i>"Innovation distinguishes between a leader and a follower."
-</i></h1>
-<h1 style="color: white;">By <br> Steve Jobs</h1>
-<a href="#myModal" role="button" data-toggle="modal" class="btn btn-default">Be a Mentee</a>
+<div class="mai text-center">
+	<div class="container">
+	<h1 style="color: white; padding-top: 20%;">HEAL, INSPIRE, REVIVE.</h1>
+
 </div>
+</div>
+<div class="colrr">
+	<div class="container">
+	<h2 class="text-center">Sign Up Here to be a Mentee <a href="#myModal" role="button" data-toggle="modal" class="btn btn-default">Be a Mentee</a></h2>
+</div>
+</div>
+<div class="sign-up-section">
+	<div class="col-sm-6 bg-1 text-center">
+		<h2 style="color: white;">Do You Want To Improve Your Business Skills</h2>
+		<p style="color: white;"> Get the insight, strategies, and tools you need to take the lead over the competition and drive your business to the next level.</p>
+	</div>
+<div class="col-sm-6 bg-1 text-center ">
+	<h2 style="color: white;">Do You Want To Improve Your Leadership Skills</h2>
+	<p style="color: white;">Are you successful and truly happy, or are there parts of you that are unfulfilled? The extraordinary life you want is within your grasp, but you need clarity and focus to achieve it.</p>
+</div>
+</div>
+
+<div class="about-me" style="background-color: white;">
+	<div class="container">
+	<div class="col-sm-6">
+		<img src="static/IMG_20170920_234403_667.jpg" style="width: 100%; border-radius: 2000px;">
+	</div>
+	<div class="col-sm-6" style="margin-top: 80px;">
+		<h2>ABOUT JOLLA</h2>
+
+<h4><i>World authority on leadership psychology</i></h4>
+
+<p style="font-size: 1.5em;">Jola Tankoka is an entrepreneur, best-selling author, philanthropist and the nation’s #1 Life and Business Strategist. A recognized authority on the psychology of leadership, negotiations and organizational turnaround, he has served as an advisor to leaders around the world for more than 7 years.</p>
+	</div>
+</div>
+</div>
+<div class="posts">
+
+	<br>
+	<div class="container">
+		<h2 class="text-center" style="color: white;">JOLA TANKOKA BLOG'S</h2>
+		<br>
+		<div class="col-sm-offset-2">
+			{% for post in object_list%}
+			<div class="col-md-3">
+				<div class="panel-default">
+					{% if post.header_pic %}
+					<!-- <img src="{{ post.header_pic.url }}" style="width: 100%;"> -->
+					{% endif %}
+					<div class="panel-body" style="background-color: white;">
+						<h4>{{ post.title }}</h4>
+						<p>{{ post.body|truncatechars:240 }}</p>
+						<a href="{{ post.get_absolute_url }}" class="btn btn-danger">Read More →</a>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+
+</div>
+
+<footer>
+     <div class="container">
+	       <div class="col-sm-3">
+	         <h2>JT</h2>
+	       </div>
+	       <div class="col-sm-2 simple">
+	         <h5>JOLATANKOKA</h5>
+				<ul class="list-unstyled">
+				<li><a href="#">Documentation</a></li>
+				<li><a href="#">About us</a></li>
+				<li><a href="#">Contact</a></li>
+				</ul>
+			</div>
+			<div class="col-sm-2 simple">
+				<h5>Social</h5>
+				<ul class="list-unstyled">
+				<li><a href="#"><i class="fa fa-facebook-square"></i> Facebook</a></li>
+				<li><a href="#"><i class="fa fa-twitter-square"></i> Twitter</a></li>
+				<li><a href="#"><i class="fa fa-link"></i> Blog</a></li>
+				</ul> 
+			</div>
+			<div class="col-sm-2 simple">
+				<h5>Support</h5>
+
+				<ul class="list-unstyled">
+				<li><a href="#">Contact</a></li>
+				<li><a href="#">Privacy police</a></li>
+				<li><a href="#">Terms & conditions</a></li>
+				<li><a href="#">Help desk</a></li>
+				</ul> 
+			</div>
+			<div class="col-sm-2 simple">
+				<h5>JOLATANKOKA</h5>
+				<ul class="list-unstyled">
+				<li><a href="#">Address line 1</a></li>
+				<li><a href="#">Address line 2</a></li>
+				<li><a href="#">08087307896</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="">
+	         <i class="fa fa-facebook-official spacv"></i>
+	         <i class="fa fa-twitter spacv"></i>
+	         <i class="fa fa-snapchat spacv"></i>
+	         <i class="fa fa-youtube-play spacv"></i>
+	       </div>
+   </footer>
+   <div class="credite">
+   		<p class="text-center">&copy 2017 JOLATANKOKA, CREATED BY OYE.</p>
+   </div>
 {% endblock %}

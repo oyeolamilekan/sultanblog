@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils import timezone
 from django.core.urlresolvers import reverse
+from .utils import mentee_sender
+from django.db.models.signals import pre_save
 
 # Create your models here.
 class PublishedManager(models.Manager):
@@ -9,12 +11,18 @@ class PublishedManager(models.Manager):
         return super(PublishedManager, self).get_queryset().filter(status='published')
 
 class Profile(models.Model):
+	OWNER_STATUS = (
+	    ('owner', 'Owner'),
+	    ('staff', 'Staff'),
+	)
 	owner = models.OneToOneField(User)
 	background_pic = models.ImageField(upload_to="me/",null=True,blank=True)
 	profile_pic = models.ImageField(upload_to='me/',null=True,blank=True)
+	owner_status = models.CharField(max_length=300,choices=OWNER_STATUS,default='staff')
 
 	def __str__(self):
 		return str(self.owner)
+
 class Post(models.Model):
 	STATUS_CHOICES = (
 	    ('draft', 'Draft'),
@@ -37,8 +45,8 @@ class Post(models.Model):
 	publish = models.DateTimeField(default=timezone.now)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)
-	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='draft')
-
+	status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='published')
+	page_views = models.IntegerField(default=0)
 	objects = models.Manager() # The default manager.
 	published = PublishedManager() # The Dahl-specific manager.
 
@@ -56,10 +64,7 @@ class Post(models.Model):
 	                                             self.publish.strftime('%d'),
 	                                             self.slug])
 
-	def __str__(self):
-		return self.content
-
-class Feedback(models.Model):
+class Mentee(models.Model):
 	name = models.CharField(max_length=200)
 	phone_number = models.IntegerField()
 	email_field = models.EmailField()
@@ -67,3 +72,18 @@ class Feedback(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Ads(models.Model):
+	url = models.CharField(max_length=200)
+	banner = models.ImageField('ads/',blank=True,null=True)
+
+	def __str__(self):
+		return self.url
+
+def pre_save_post_receiver(sender, instance, *args, **kwargs):
+    mentee_sender(instance,Mentee.objects.all())
+
+
+
+pre_save.connect(pre_save_post_receiver, sender=Post)
+
