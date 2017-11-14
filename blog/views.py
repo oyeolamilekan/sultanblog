@@ -9,7 +9,8 @@ from django.core.mail import send_mail
 
 def post_index(request):
   ad = Ads.objects.order_by('?')[0:1]
-  return render(request, 'post/index.html', {'ads':ad})
+  blog = Post.objects.all()[:3]
+  return render(request, 'post/index.html', {'ads':ad,'object_list':blog})
 
 
 def post_list(request):

@@ -32,6 +32,23 @@
 		padding-bottom: 5%;
 		height: 400px; 
 	}
+	.bg-12 {
+		background-image: url('static/bus.jpg');
+		background-size: cover;
+	    background-position-top: 20px;
+	    width: 50%;
+	    display: block;
+	    margin: 0 !important;
+	    padding: 10%
+	}
+	.bg-12 h1{
+		padding-left: 20%;
+		padding-right: 20%;
+	}
+	.bg-12 {
+		padding-bottom: 5%;
+		height: 400px; 
+	}
 	.posts {
 		background-color: black;
 	}
@@ -79,6 +96,9 @@ footer ul li {
 		.bg-1 {
 			width: 100%;
 		}
+		.bg-12 {
+			width: 100%;
+		}
 		h1 {
 			margin: 0;
 		}
@@ -98,13 +118,13 @@ footer ul li {
 </div>
 </div>
 <div class="sign-up-section">
-	<div class="col-sm-6 bg-1 text-center">
-		<h2 style="color: white;">Do You Want To Improve Your Business Skills</h2>
-		<p style="color: white;"> Get the insight, strategies, and tools you need to take the lead over the competition and drive your business to the next level.</p>
+	<div class="col-sm-6 bg-12 text-center">
+		<h2 style="color: black;">Do You Want To Improve Your Business Skills</h2>
+		<p style="color: gold;"> Get the insight, strategies, and tools you need to take the lead over the competition and drive your business to the next level.</p>
 	</div>
 <div class="col-sm-6 bg-1 text-center ">
-	<h2 style="color: white;">Do You Want To Improve Your Leadership Skills</h2>
-	<p style="color: white;">Are you successful and truly happy, or are there parts of you that are unfulfilled? The extraordinary life you want is within your grasp, but you need clarity and focus to achieve it.</p>
+	<h2 style="color: black;">Do You Want To Improve Your Leadership Skills</h2>
+	<p style="color: gold;">Are you successful and truly happy, or are there parts of you that are unfulfilled? The extraordinary life you want is within your grasp, but you need clarity and focus to achieve it.</p>
 </div>
 </div>
 
@@ -124,7 +144,7 @@ footer ul li {
 </div>
 <div class="colrr">
 	<div class="container">
-	<h2 class="text-center">Sign Up Here to <a href="#myModal" role="button" data-toggle="modal" class="btn btn-default">Be a Mentee</a></h2>
+	<h2 class="text-center" style="text-transform: uppercase;">Sign Up Here to <a href="#myModal" role="button" data-toggle="modal" class="btn btn-default">Be a Mentee</a></h2>
 </div>
 </div>
 
@@ -132,10 +152,10 @@ footer ul li {
 
 	<br>
 	<div class="container">
-		<h2 class="text-center" style="color: white;">JOLA TANKOKA BLOG</h2>
+		<h2 class="text-center" style="color: white;">JOLA TANKOKA'S BLOG</h2>
 		<br>
 		<div class="col-sm-offset-2">
-			{% for post in object_list%}
+			{% for post in object_list %}
 			<div class="col-md-3">
 				<div class="panel-default">
 					{% if post.header_pic %}
@@ -160,7 +180,7 @@ footer ul li {
 	         <h2>JT</h2>
 	       </div>
 	       <div class="col-sm-2 simple">
-	         <h5>JOLATANKOKA</h5>
+	         <h5>JOLA TANKOKA</h5>
 				<ul class="list-unstyled">
 				<li><a href="#">Documentation</a></li>
 				<li><a href="#">About us</a></li>
@@ -172,7 +192,8 @@ footer ul li {
 				<ul class="list-unstyled">
 				<li><a href="#"><i class="fa fa-facebook-square"></i> Facebook</a></li>
 				<li><a href="#"><i class="fa fa-twitter-square"></i> Twitter</a></li>
-				<li><a href="#"><i class="fa fa-link"></i> Blog</a></li>
+				<li><a href="#"><i class="fa fa-instagram"></i> Instagram</a></li>
+				<li><a href="#"><i class="fa fa-linkedin"></i> Linkedin</a></li>
 				</ul> 
 			</div>
 			<div class="col-sm-2 simple">
@@ -180,28 +201,19 @@ footer ul li {
 
 				<ul class="list-unstyled">
 				<li><a href="#">Contact</a></li>
-				<li><a href="#">Privacy police</a></li>
 				<li><a href="#">Terms & conditions</a></li>
 				<li><a href="#">Help desk</a></li>
 				</ul> 
-			</div>
-			<div class="col-sm-2 simple">
-				<h5>JOLATANKOKA</h5>
-				<ul class="list-unstyled">
-				<li><a href="#">Address line 1</a></li>
-				<li><a href="#">Address line 2</a></li>
-				<li><a href="#">08087307896</a></li>
-				</ul>
 			</div>
 		</div>
 		<div class="">
 	         <i class="fa fa-facebook-official spacv"></i>
 	         <i class="fa fa-twitter spacv"></i>
-	         <i class="fa fa-snapchat spacv"></i>
-	         <i class="fa fa-youtube-play spacv"></i>
+	         <i class="fa fa-instagram spacv"></i>
+	         <i class="fa fa-linkedin spacv"></i>
 	       </div>
    </footer>
    <div class="credite">
-   		<p class="text-center">&copy 2017 JOLATANKOKA, CREATED BY OYE.</p>
+   		<p class="text-center">&copy 2017 JOLA TANKOKA INTERNATIONAL. CREATED BY OYE.</p>
    </div>
 {% endblock %}
