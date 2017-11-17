@@ -122,12 +122,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'media/')
 
 #STATIC_URL = '/static/'
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-# AWS_ACCESS_KEY_ID = 'AKIAIMMUJPDI5TKTUS7Q'
-# AWS_SECRET_ACCESS_KEY = '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'
-# AWS_STORAGE_BUCKET_NAME = 'washinga'
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 # STATIC_URL = '/static/'
 #STATIC_URL = '/static/'
