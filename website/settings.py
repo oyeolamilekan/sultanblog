@@ -142,8 +142,8 @@ STATICFILES_DIRS = (
 if os.getcwd() == '/app':
     import dj_database_url
     DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-    AWS_ACCESS_KEY_ID = 'AKIAIMMUJPDI5TKTUS7Q'
-    AWS_SECRET_ACCESS_KEY = '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'
+    AWS_ACCESS_KEY_ID = '-----------------------'
+    AWS_SECRET_ACCESS_KEY = '----------------------'
     AWS_STORAGE_BUCKET_NAME = 'washinga'
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
